@@ -1,0 +1,13 @@
+<div *ngIf='!usernameStored'>
+      <h2> Poker Planner</h2>
+      <hr style="margin-bottom: 50px;"> 
+      <label for="fname">Enter your name:</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name.." #userName>
+      <input type="submit" value="Submit" (click)="submitName()">
+      <br><br><br>
+      <h4 style="text-align: center;">Made with 💖 and ☕ by Shantanu Joshi</h4>
+</div>
+
+<div *ngIf='usernameStored'>
+  <app-card></app-card>
+</div>

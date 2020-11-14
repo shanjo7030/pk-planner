@@ -1,0 +1,39 @@
+<input type="text" id="ticketNumber" name="ticketNumber" placeholder="Enter Ticket No (Example if Ticket is CRAC-179, just add 179 )" #ticketNumber>
+<button (click)="onSelectItem('2')">2</button>
+<button (click)="onSelectItem('3')">3</button>
+<button (click)="onSelectItem('5')">5</button>
+<button (click)="onSelectItem('8')">8</button>
+<button (click)="onSelectItem('13')">13</button>
+<button (click)="onSelectItem('20')">20</button>
+<button (click)="onSelectItem('40')">40</button>
+<button (click)="onSelectItem('100')">100</button>
+<button (click)="onSelectItem('?')">?</button>
+<button (click)="onSelectItem('Infinity')" >Infinity</button>
+<h2 style="text-align: center;" *ngIf="isSelected"> You Selected : {{valueSelected}} </h2>
+<h6 style="text-align: center;" *ngIf="isSelected"> You can click on any other button and re-select it</h6>
+<button 
+style="background:#4CAF50;border: 1px solid white;width: 30%;font-size: large;"
+(click)="onSubmit()"
+[ngClass]="{'disabled':!isSelected}"
+>Submit</button>
+
+<button 
+style="background:#4CAF50;border: 1px solid white;width: 30%;font-size: large;"
+(click)="onSeeWhoVoted()"
+*ngIf="voted"
+>See who has voted</button>
+
+<button *ngIf="showOtherButtons && isadmin"
+style="background:#4CAF50;border: 1px solid white;width: 30%;font-size: large;"
+(click)="onReveal()"
+>Reveal</button>
+
+<div *ngIf="showOtherButtons ">
+<div *ngFor="let voteItem of userList" >
+    <p *ngIf="!revealVotes"> {{voteItem.username}}  X </p>
+    <p *ngIf="revealVotes"> {{voteItem.username}}  {{voteItem.value}} </p>
+</div>
+</div>
+
+<button style="background:#4CAF50;border: 1px solid white;width: 30%;font-size: large;" *ngIf="showOtherButtons && isadmin"
+(click)="onReVote()">Revote</button>
